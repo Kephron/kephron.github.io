@@ -1,0 +1,208 @@
+header {
+    background-color: #003300;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.cabecalho {
+    position: relative;
+    width: 940px;
+    margin: 0 auto;
+}
+
+.cabecalho-logo {
+    display: inline-block;
+}
+
+.cabecalho-logo img {
+    width: 17%;
+    margin: 2rem 0.3125rem 2rem 2rem;
+}
+
+.cabecalho-logo div {
+    position: absolute;
+    top: 3rem;
+    left: 7rem;
+    font-size: 1.75rem;
+    color: white;
+    padding-bottom: 0rem;
+}
+
+#logo-nome {
+    font-size: 2rem;
+    margin-bottom: 0.2rem;
+}
+
+.navegacao {
+    position: absolute;
+    top: 4rem;
+    right: 3rem;
+}
+
+.navegacao li {
+    display: inline;
+    font-size: 1.75rem;
+    margin-left: 1rem;
+}
+
+.navegacao a {
+    color: white;
+    text-decoration: none;
+}
+
+.navegacao a:hover {
+    text-decoration: underline;
+}
+
+body {
+    margin: 0;
+}
+
+main {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-conteudo, .produtos-conteudo, .contato-conteudo {
+    width: 940px;
+    margin: 3rem auto;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.home-conteudo p:not(.home-endereco p), .home-endereco {
+    font-size: 1.25rem;
+    width: 90%;
+    margin: 2rem auto;
+}
+
+.home-imagem {
+    display: inline;
+    text-align: center;
+    width: 200px;
+    height: 200px;
+}
+
+.home-imagem img {
+    margin: 0 1rem;
+    width: 45%;
+    height: 45%;
+}
+
+.home-mapa {
+    width: 940px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+footer {
+    background-color: #003300;
+    text-align: center;
+    padding-bottom: 1.5rem;
+}
+
+footer img {
+    width: 6%;
+    padding-left: 1rem;
+    margin: 1.5rem auto;
+}
+
+footer p {
+    color: white;
+}
+
+.produtos-conteudo p {
+    font-size: 1.25rem;
+    margin: 1.5rem 0;
+}
+
+.produtos-conteudo li {
+    display: inline-block;
+    font-size: 1.25rem;
+    width: 25%;
+    height: 25%;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    border: none;
+    transition: 0.3s;
+}
+
+.produtos-conteudo li:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.produtos-preco {
+    margin: 0.5rem 0;
+    font-weight: bold;
+}
+
+.contato-conteudo p {
+    font-size: 1.25rem;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.contato-conteudo form label, .contato-conteudo form legend {
+    display: block;
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem 11.5rem;
+    text-align: left;
+}
+
+.input-padrao {
+    display: block;
+    width: 60%;
+    border-radius: 0.5rem;
+    border: none;
+    box-shadow: 1px 1px 1.5px 1px black;
+    margin: 0 auto 1.5rem auto;
+    padding-left: 0.75rem;
+
+}
+
+.input-padrao:not(form textarea) {
+    height: 30px;
+}
+
+#mensagem, .checkbox input {
+    margin-bottom: 1.5rem;
+}
+
+.contato-preferencia legend, .contato-preferencia input {
+    margin-bottom: 0.5rem;
+}
+
+.contato-preferencia {
+    margin-bottom: 1rem;
+}
+
+.enviar {
+    display: block;
+    width: 40%;
+    margin: auto;
+    font-size: 1.25rem;
+    font-weight: bold;
+    background-color: darkorange;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    padding: 1rem 0;
+    box-shadow: 1px 1px 1.5px 1px black;
+    transition: 0.6s;
+    cursor: pointer;
+}
+
+.enviar:hover {
+    background-color: #ff9a00;
+}
