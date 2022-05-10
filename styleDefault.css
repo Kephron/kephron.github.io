@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    width: 98.7vw;
+}
+
+header, footer {
+    background-color: #003300;
+}
+
+.cabecalho-conteudo {
+    width: 940px;
+    margin: auto;  
+    display: flex;  
+}
+
+.cabecalho-conteudo-esquerdo {
+    display: flex;
+    flex: 0.99;
+}
+
+.cabecalho-conteudo-esquerdo a {
+    display: contents;
+}
+
+.cabecalho-conteudo-esquerdo img {
+    width: 13%;
+    margin: 0.5rem 0.3125rem 0.5rem 2rem;
+}
+
+.cabecalho-conteudo-esquerdo h1 {
+    font-size: 1.75rem;
+    text-decoration: none;
+    color: white;
+    margin: 2.1rem 0 0 0.5rem;
+}
+
+#cabecalho-nome {
+    font-size: 2rem;
+    margin-bottom: 0.2rem;
+}
+
+.cabecalho-login-carrinho {
+    display: flex;
+    margin-top: 0.2rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.cabecalho-login-carrinho a {
+    text-decoration: none;
+}
+
+.cabecalho-login {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    color: #003300;
+    background-color: #ff8c00;
+    padding: 0 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+    width: max-content;
+}
+
+.cabecalho-login:hover {  
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.cabecalho-login img {
+    padding-left: 0.4rem;
+}
+
+.cabecalho-carrinho {
+    flex: 0.6;
+    margin-left: 1rem;
+    width: 14%;
+    cursor: pointer;
+}
+
+.cabecalho-navegacao {
+    display: flex;
+    flex-direction: column;
+}
+
+.cabecalho-navegacao {
+    flex: 1;
+    padding-top: 2rem;
+}
+
+.cabecalho-navegacao li {
+    display: inline;
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+}
+
+.cabecalho-navegacao a {
+    color: white;
+    text-decoration: none;
+}
+
+.cabecalho-navegacao a:hover {
+    text-decoration: underline;
+}
+
+main {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.conteudo-pagina {
+    width: 940px;
+    margin: 3rem auto;
+    text-align: center;
+}
+
+.rodape-conteudo {
+    text-align: center;
+    padding-bottom: 1.5rem;
+    color: #ffffff;
+}
+
+.rodape-conteudo img {
+    width: 6%;
+    padding-left: 1rem;
+    margin: 1.5rem auto;
+}

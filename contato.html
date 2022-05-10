@@ -6,34 +6,48 @@
         <meta name="viewport" content="width=devide-width">
         <title>Contato - Pacato's Tea House</title>
         <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="styleDefault.css">
         <link rel="stylesheet" href="style.css">
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
     </head>
 
     <body>
         <header>
-            <h1 class="cabecalho-logo">
-                <a href="index.html"><img src="imagens/logo.png"></a>
-                <a href="index.html">
-                    <div>
-                        <p id="logo-nome">Pacato's Tea House</p>
-                        <p>Chá para qualquer hora</p>
+            <section class="cabecalho-conteudo">
+                <div class="cabecalho-conteudo-esquerdo">
+                    <a href="index.html">
+                        <img src="imagens/logo.png">
+                    </a>
+                    <a href="index.html">
+                        <h1>
+                            <p id="cabecalho-nome">Pacato's Tea House</p>
+                            <p>Chá para qualquer hora</p>
+                        </h1>
+                    </a>
+                </div>
+                <div class="cabecalho-conteudo-direito">
+                    <div class="cabecalho-login-carrinho">
+                        <a href="login.html">
+                            <button class="cabecalho-login">Entre ou Cadastre-se
+                                <img src="imagens/profile.ico">
+                            </button>
+                        </a>
+                        <img class="cabecalho-carrinho" src="imagens/carrinhoCompras.ico">
                     </div>
-                </a>
-            </h1>
 
-            <nav class="navegacao">
-                <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="produtos.html">Produtos</a></li>
-                    <li><a href="contato.html">Contato</a></li>
-                </ul>
-            </nav>
+                    <nav class="cabecalho-navegacao">
+                        <ul>
+                            <li><a href="index.html">Início</a></li>
+                            <li><a href="produtos.html">Produtos</a></li>
+                            <li><a href="contato.html">Contato</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </section>
         </header>
 
         <main>
-            <section class="contato-conteudo">
-                <h2>Contato</h2>
+            <section class="conteudo-pagina contato-conteudo">
+                <h2 class="titulo-pagina">Contato</h2>
                 <p>Envie-nos uma mensagem e em breve retornaremos.</p>
                 <form>
                     <label for=" nome-sobrenome">Nome e Sobrenome</label>
@@ -57,14 +71,16 @@
 
                     <label class="checkbox"><input type="checkbox" checked>Gostaria de receber nossas novidades por e-mail?</label>
 
-                    <input type="submit" value="Enviar" class="enviar">
+                    <input type="submit" value="Enviar" class="botao-padrao">
                 </form>
             </section>
         </main>
 
         <footer>
-            <img src="imagens/logo.png">
-            <p class="copyright">&copy; Todos os Direitos Reservados. Pacato's Tea House. 2022.</p>
+            <div class="rodape-conteudo">
+                <img src="imagens/logo.png">
+                <p class="copyright">&copy; Todos os Direitos Reservados. Pacato's Tea House. 2022.</p>
+            </div>
         </footer>
     </body>
 

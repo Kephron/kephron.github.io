@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Login - Pacato's Tea House</title>
+        <link rel="stylesheet" href="reset.css">
+        <link rel="stylesheet" href="styleDefault.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <header>
+            <section class="cabecalho-conteudo">
+                <div class="cabecalho-conteudo-esquerdo">
+                    <a href="index.html">
+                        <img src="imagens/logo.png">
+                    </a>
+                    <a href="index.html">
+                        <h1>
+                            <p id="cabecalho-nome">Pacato's Tea House</p>
+                            <p>Chá para qualquer hora</p>
+                        </h1>
+                    </a>
+                </div>
+                <div class="cabecalho-conteudo-direito">
+                    <div class="cabecalho-login-carrinho">
+                        <a href="login.html">
+                            <button class="cabecalho-login">Entre ou Cadastre-se
+                                <img src="imagens/profile.ico">
+                            </button>
+                        </a>
+                        <img class="cabecalho-carrinho" src="imagens/carrinhoCompras.ico">
+                    </div>
+
+                    <nav class="cabecalho-navegacao">
+                        <ul>
+                            <li><a href="index.html">Início</a></li>
+                            <li><a href="produtos.html">Produtos</a></li>
+                            <li><a href="contato.html">Contato</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </section>
+        </header>
+
+        <main>
+            <section class="conteudo-pagina login-conteudo">
+                <div class="login-conteudo-borda">
+                    <div class="abas">
+                        <button class="botao-padrao ativa" data-aba="entrar">Entrar</button>
+                        <button class="botao-padrao" data-aba="cadastrar">Cadastrar</button>
+                    </div>
+                    <div class="formulario">
+                        <form class="formularioLogin" data-formulario="entrar">
+                            <label for="loginUsuario">E-mail</label>
+                            <input id="loginUsuario" class="input-padrao" type="text" required placeholder="seuemail@dominio.com">
+
+                            <label for="senhaUsuario">Senha</label>
+                            <input id="senhaUsuario" class="input-padrao" type="password" required placeholder="********">
+                            <button class="botao-padrao">Entrar</button>
+                        </form>
+
+                        <form class="formularioCadastro hide" data-formulario="cadastrar">
+                            <label for="nome">Nome</label>
+                            <input id="nome" class="input-padrao" type="text" required placeholder="Seu nome">
+
+                            <label for="sobrenome">Sobrenome</label>
+                            <input id="sobrenome" class="input-padrao" type="text" required placeholder="Seu sobrenome">
+
+                            <label for="email">E-mail</label>
+                            <input id="email" class="input-padrao" type="email" required placeholder="seuemail@dominio.com">
+
+                            <label for="senha">Senha</label>
+                            <input id="senha" class="input-padrao" type="password" required placeholder="********">
+
+                            <label for="repitaSenha">Repita a Senha</label>
+                            <input id="repitaSenha" class="input-padrao" type="password" required placeholder="********">
+                            <button class="botao-padrao">Cadastrar</button>
+                        </form>
+                    </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="rodape-conteudo">
+                <img src="imagens/logo.png">
+                <p class="copyright">&copy; Todos os Direitos Reservados. Pacato's Tea House. 2022.</p>
+            </div>
+        </footer>
+        <script src="login.js"></script>
+    </body>
+
+</html>
