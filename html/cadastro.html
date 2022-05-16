@@ -46,54 +46,52 @@
         </header>
 
         <main>
-            <section class="conteudo-pagina cadastro-conteudo">
-                <div class="cadastro-conteudo-borda">
-                    <h2 class="titulo-pagina">Cadastre-se</h2>
+            <section class="conteudo-pagina">
+                <h2 class="titulo-pagina">Cadastre-se</h2>
 
-                    <div id="msg-erro" class="nao-selecionavel" unselectable="on">&emsp;</div>
-                    <div id="msg-sucesso" class="nao-selecionavel" unselectable="on"></div>
+                <div id="msg-erro" class="nao-selecionavel" unselectable="on">&emsp;</div>
+                <div id="msg-sucesso" class="nao-selecionavel" unselectable="on"></div>
 
-                    <div class="formulario">
-                        <form class="formulario-cadastro">
-                            <label for="nome" id="label-nome" data-label="label-nome">Nome<i class="fa fa-info-circle" aria-hidden="true"></i></label>
-                            <input id="nome" class="input-padrao" type="text" data-input="nome" required placeholder="Seu nome">
+                <div class="formulario">
+                    <form class="formulario-cadastro">
+                        <label for="nome" id="label-nome" data-label="label-nome">Nome<div class="tooltip-padrao tooltip-linha-unica" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i><span>Deve ter, no mínimo, três letras</span></div></label>
+                        <input id="nome" class="input-padrao" type="text" data-input="nome" required>
 
-                            <label for="sobrenome" id="label-sobrenome" data-label="label-sobrenome">Sobrenome<i class="fa fa-info-circle" aria-hidden="true"></i></label>
-                            <input id="sobrenome" class="input-padrao" type="text" data-input="sobrenome" required placeholder="Seu sobrenome">
+                        <label for="sobrenome" id="label-sobrenome" data-label="label-sobrenome">Sobrenome<div class="tooltip-padrao tooltip-linha-unica" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i><span>Deve ter, no mínimo, três letras</span></div></label>
+                        <input id="sobrenome" class="input-padrao" type="text" data-input="sobrenome" required>
 
-                            <label for="email" id="label-email" data-label="label-email">E-mail<i class="fa fa-info-circle" aria-hidden="true"></i></label>
-                            <input id="email" class="input-padrao" type="text" data-input="email" required placeholder="seuemail@dominio.com">
+                        <label for="email" id="label-email" data-label="label-email">E-mail</label>
+                        <input id="email" class="input-padrao" type="text" data-input="email" required placeholder="seuemail@dominio.com">
 
-                            <label for="senha" id="label-senha" data-label="label-senha">Senha<i class="fa fa-info-circle" aria-hidden="true"></i></label>
-                            <div class="input-senha">
-                                <input id="senha" class="input-padrao" type="password" data-input="senha" required placeholder="********">
-                                <div class="mostra-senha-padrao mostra-senha">
-                                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
-                                </div>
-                                <div class="esconde-senha-padrao esconde-senha">
-                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                </div>
+                        <label for="senha" id="label-senha" data-label="label-senha">Senha<div class="tooltip-padrao" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i><span>Deve ter entre 8 e 20 dígitos, letra maiúscula, letra minúscula, número e caracter especial</span></div></label>
+                        <div class="input-senha">
+                            <input id="senha" class="input-padrao" type="password" data-input="senha" required placeholder="********">
+                            <div class="mostra-senha-padrao mostra-senha">
+                                <i class="fa fa-eye-slash" aria-hidden="true"></i>
                             </div>
-
-                            <label for="confirma-senha" id="label-confirma-senha" data-label="label-confirma-senha">Repita a Senha<i class="fa fa-info-circle" aria-hidden="true"></i></label>
-                            <div class="input-senha">
-                                <input id="confirma-senha" class="input-padrao" type="password" data-input="confirma-senha" required placeholder="********">
-                                <div class="mostra-senha-padrao mostra-confirma-senha">
-                                    <i class="fa fa-eye-slash" aria-hidden="true"></i>
-                                </div>
-                                <div class="esconde-senha-padrao esconde-confirma-senha">
-                                    <i class="fa fa-eye" aria-hidden="true"></i>
-                                </div>
+                            <div class="esconde-senha-padrao esconde-senha">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
                             </div>
-
-                            <button class="botao-padrao" id="botao-cadastrar">Cadastrar</button>
-                        </form>
-
-                        <div class="justify-center">
-                            <hr>
                         </div>
-                        <p>Já tem conta? <a href="../html/login.html">Entre</a></p>
+
+                        <label for="confirma-senha" id="label-confirma-senha" data-label="label-confirma-senha">Repita a Senha</label>
+                        <div class="input-senha">
+                            <input id="confirma-senha" class="input-padrao" type="password" data-input="confirma-senha" required placeholder="********">
+                            <div class="mostra-senha-padrao mostra-confirma-senha">
+                                <i class="fa fa-eye-slash" aria-hidden="true"></i>
+                            </div>
+                            <div class="esconde-senha-padrao esconde-confirma-senha">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                            </div>
+                        </div>
+
+                        <button class="botao-padrao" id="botao-cadastrar">Cadastrar</button>
+                    </form>
+
+                    <div class="divisor">
+                        <hr>
                     </div>
+                    <p class="link-login">Já tem conta? <a href="../html/login.html">Entre</a></p>
                 </div>
             </section>
         </main>

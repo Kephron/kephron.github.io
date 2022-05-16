@@ -125,8 +125,8 @@ botaoCadastrar.addEventListener('click', (event) => {
 
         setTimeout(() => { window.location.href = '../html/login.html' }, 5000);
     } else {
-        msgErro.setAttribute('style', 'display: inline-block; color: #ff0000; background-color: #ffaaaa;');
-        msgErro.innerHTML = '<strong>Preencha todos os campos corretamente antes de cadastrar</strong>';
+        msgErro.setAttribute('style', 'transition: all .3s ease-out; display: inline-block; color: #ff0000; background-color: #ffaaaa;');
+        msgErro.innerHTML = '<strong>Preencha todos os campos corretamente</strong>';
         msgSucesso.setAttribute('style', 'display: none');
         msgSucesso.innerHTML = '';
         event.preventDefault();

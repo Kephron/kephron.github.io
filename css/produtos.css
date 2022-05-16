@@ -1,9 +1,9 @@
-.produtos-conteudo p {
+.conteudo-pagina p {
     font-size: 1.25rem;
     margin: 1.5rem 0;
 }
 
-.produtos-conteudo li {
+.conteudo-pagina li {
     display: inline-block;
     font-size: 1.25rem;
     width: 25%;
@@ -15,7 +15,7 @@
     transition: 0.3s;
 }
 
-.produtos-conteudo li:hover {
+.conteudo-pagina li:hover {
     cursor: pointer;
     transform: scale(1.05);
 }

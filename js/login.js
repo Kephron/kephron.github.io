@@ -67,7 +67,7 @@ botaoEntrar.addEventListener('click', (event) => {
 
         window.location.href = '../html/principal.html';
     } else {
-        msgErro.setAttribute('style', 'display: inline-block; color: #ff0000; background-color: #ffaaaa;');
+        msgErro.setAttribute('style', 'transition: all .3s ease-out; display: inline-block; color: #ff0000; background-color: #ffaaaa;');
         msgErro.innerHTML = '<strong>E-mail ou Senha incorreto</strong>';
 
         msgSucesso.setAttribute('style', 'display: none');
