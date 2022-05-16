@@ -65,7 +65,9 @@ botaoEntrar.addEventListener('click', (event) => {
 
         localStorage.setItem('usuarioLogado', JSON.stringify(usuarioValido));
 
-        window.location.href = '../html/principal.html';
+        event.preventDefault();
+
+        setTimeout(() => { window.location.href = '../html/principal.html'; }, 3000);
     } else {
         msgErro.setAttribute('style', 'transition: all .3s ease-out; display: inline-block; color: #ff0000; background-color: #ffaaaa;');
         msgErro.innerHTML = '<strong>E-mail ou Senha incorreto</strong>';

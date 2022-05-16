@@ -123,24 +123,16 @@ botaoCadastrar.addEventListener('click', (event) => {
         msgErro.setAttribute('style', 'display: none');
         msgErro.innerHTML = '';
 
-        setTimeout(() => { window.location.href = '../html/login.html' }, 5000);
+        event.preventDefault();
+
+        setTimeout(() => { window.location.href = '../html/login.html' }, 3000);
     } else {
         msgErro.setAttribute('style', 'transition: all .3s ease-out; display: inline-block; color: #ff0000; background-color: #ffaaaa;');
         msgErro.innerHTML = '<strong>Preencha todos os campos corretamente</strong>';
         msgSucesso.setAttribute('style', 'display: none');
         msgSucesso.innerHTML = '';
+
         event.preventDefault();
-        // if (nomeValido == false) {
-        //     nome.focus();
-        // } else if (sobrenomeValido == false) {
-        //     sobrenome.focus();
-        // } else if (emailValido == false) {
-        //     email.focus();
-        // } else if (senhaValida == false) {
-        //     senha.focus();
-        // } else if (confirmaSenhaValida == false) {
-        //     confirmaSenha.focus();
-        // }
     }
 });
 
