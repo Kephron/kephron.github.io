@@ -1,0 +1,24 @@
+.contato-conteudo p {
+    font-size: 1.25rem;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.contato-conteudo form label, .contato-preferencia legend {
+    display: block;
+    font-size: 1.25rem;
+    margin: 0 0 0.5rem 11.5rem;
+    text-align: left;
+}
+
+#mensagem, .checkbox input {
+    margin-bottom: 1.5rem;
+}
+
+.contato-preferencia legend, .contato-preferencia input {
+    margin-bottom: 0.5rem;
+}
+
+.contato-preferencia {
+    margin-bottom: 1rem;
+}

@@ -1,0 +1,28 @@
+main {
+    align-items: center;
+}
+
+.index-conteudo p:not(.index-endereco p), .index-endereco {
+    font-size: 1.25rem;
+    width: 90%;
+    margin: 2rem auto;
+}
+
+.index-imagens {
+    display: inline;
+    text-align: center;
+    width: 200px;
+    height: 200px;
+}
+
+.index-imagens img {
+    margin: 0 1rem;
+    width: 45%;
+    height: 45%;
+}
+
+.index-mapa {
+    width: 940px;
+    text-align: center;
+    margin: 0 auto;
+}

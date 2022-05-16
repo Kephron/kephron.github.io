@@ -1,0 +1,26 @@
+.produtos-conteudo p {
+    font-size: 1.25rem;
+    margin: 1.5rem 0;
+}
+
+.produtos-conteudo li {
+    display: inline-block;
+    font-size: 1.25rem;
+    width: 25%;
+    height: 25%;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    border: none;
+    transition: 0.3s;
+}
+
+.produtos-conteudo li:hover {
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.produtos-preco {
+    margin: 0.5rem 0;
+    font-weight: bold;
+}

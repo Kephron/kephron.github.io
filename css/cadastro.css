@@ -1,0 +1,77 @@
+.cadastro-conteudo-borda {
+    border: solid;
+    border-color: #ffffff;
+    height: 36rem;
+}
+
+#msg-erro {
+    width: 57%;
+    background-color: #ffffff;
+    padding: 10px;
+    margin: 1rem 0;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+#msg-sucesso {
+    width: 57%;
+    color: #00bb00;
+    background-color: #bbffbe;
+    padding: 10px;
+    border-radius: 4px;
+    display: none;
+}
+
+.formulario-cadastro label, .formulario-cadastro input {
+    display: block;
+    text-align: left;
+    width: 50%;
+}
+
+.formulario-cadastro label{
+    margin: 0 0 0.5rem 14.5rem;
+    font-size: 1.25rem;
+}
+
+.formulario-cadastro button {
+    width: 30%;
+}
+
+.fa-info-circle {
+    margin-left: .5rem;
+    color: #bbbbbb;
+}
+
+.fa-info-circle:hover {
+    cursor: pointer;
+}
+
+.input-senha {
+  position: relative;
+  width: 27.3rem;
+  left: 14.2rem;
+}
+
+.input-senha input {
+  width: 100%;
+  padding-right: 30px;
+}
+
+.mostra-senha-padrao, .esconde-senha-padrao {
+  position: absolute;
+  top: 7px;
+  right: -30px;
+  width: 18px;
+  z-index: 10;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+.mostra-senha-padrao:hover, .esconde-senha-padrao:hover {
+    cursor: pointer;
+}
+
+.esconde-senha-padrao {
+    display: none;
+}
