@@ -11,6 +11,10 @@
     text-align: left;
 }
 
+textarea#mensagem {
+    font-family: 'Poppins', sans-serif;
+}
+
 #mensagem, .checkbox input {
     margin-bottom: 1.5rem;
 }
