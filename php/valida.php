@@ -21,8 +21,8 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
     } else {
         $retorno = array('logado' => 0, 'mensagem' => 'Usuário não encontrado');
         echo json_encode($retorno);
-        echo 'Email: ' . $usuario . '  ';
-        echo 'Senha: ' . $senha;
+        // echo 'Email: ' . $usuario . '  ';
+        // echo 'Senha: ' . $senha;
     }
 } else {
     $retorno = array('logado' => 0, 'mensagem' => 'E-mail ou senha incorreto');

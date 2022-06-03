@@ -16,5 +16,5 @@ const botaoSair = document.querySelector('#botao-sair');
 botaoSair.addEventListener('click', () => {
     // localStorage.removeItem('token');
     // localStorage.removeItem('usuarioLogado');
-    window.location.href = '../html/login.html';
+    window.location.href = './login.html';
 });

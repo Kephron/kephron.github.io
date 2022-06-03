@@ -1,5 +1,3 @@
-// document.getElementsByClassName("formulario-login").reset();
-
 const email = document.querySelector('#email');
 const labelEmail = document.querySelector('#label-email');
 
@@ -51,17 +49,18 @@ botaoEntrar.addEventListener('click', (event) => {
     formData.append('email', email.value);
     formData.append('senha', senha.value);
 
-    let xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("POST", "../php/valida.php", true);
-    xmlhttp.responseType = "json";
-    xmlhttp.onreadystatechange = function () {
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "../php/valida.php", true);
+    // xhr.responseType = "json";
+    xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            console.log(this.response);
+            let resultado = JSON.parse(this.response);
+            console.log(resultado);
 
-            if (this.response == null || this.response.logado == 0) {
+            if (resultado == null || resultado.logado == 0) {
                 informaErro('E-mail ou Senha Incorreto');
                 event.preventDefault();
-            } else if (this.response.mensagem == 1) {
+            } else if (resultado.logado == 1) {
                 msgSucesso.setAttribute('style', 'display: inline-block');
                 msgSucesso.innerHTML = '<strong>Logando...</strong>';
 
@@ -70,11 +69,11 @@ botaoEntrar.addEventListener('click', (event) => {
 
                 event.preventDefault();
 
-                setTimeout(() => { window.location.href = '../html/principal.html'; }, 2000);
+                setTimeout(() => { window.location.href = './principal.html'; }, 2000);
             }
         }
     }
-    xmlhttp.send(formData);
+    xhr.send(formData);
     event.preventDefault();
 });
 
