@@ -1,3 +1,5 @@
+// document.getElementsByClassName("formulario-login").reset();
+
 const email = document.querySelector('#email');
 const labelEmail = document.querySelector('#label-email');
 
@@ -29,6 +31,7 @@ function informaErro(msg) {
     labelSenha.setAttribute('style', 'transition: all 0.4s ease-out; color: #cc0000');
 }
 
+//foco e desfoco dos inputs
 for (let i = 0; i < listaInput.length; i++) {
     let itemInput = document.getElementById(listaInput[i].getAttribute('id'));
     let itemLabel = document.getElementById(listaLabel[i].getAttribute('id'));
@@ -44,53 +47,35 @@ for (let i = 0; i < listaInput.length; i++) {
 }
 
 botaoEntrar.addEventListener('click', (event) => {
-    let listaUsuario = [];
-    let usuarioValido = {
-        nome: '',
-        sobrenome: '',
-        email: '',
-        senha: ''
-    };
+    let formData = new FormData();
+    formData.append('email', email.value);
+    formData.append('senha', senha.value);
 
-    listaUsuario = JSON.parse(localStorage.getItem('listaUsuario'));
+    let xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("POST", "../php/valida.php", true);
+    xmlhttp.responseType = "json";
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(this.response);
 
-    if (listaUsuario == null) {
-        informaErro('E-mail ou Senha Incorreto');
-        event.preventDefault();
-    } else {
-        listaUsuario.forEach((item) => {
-            if (email.value == item.emailCadastrado
-                && senha.value == item.senhaCadastrada) {
-                usuarioValido = {
-                    nome: item.nomeCadastrado,
-                    sobrenome: item.sobrenomeCadastrado,
-                    email: item.emailCadastrado,
-                    senha: item.senhaCadastrada
-                };
+            if (this.response == null || this.response.logado == 0) {
+                informaErro('E-mail ou Senha Incorreto');
+                event.preventDefault();
+            } else if (this.response.mensagem == 1) {
+                msgSucesso.setAttribute('style', 'display: inline-block');
+                msgSucesso.innerHTML = '<strong>Logando...</strong>';
+
+                msgErro.setAttribute('style', 'display: none');
+                msgErro.innerHTML = '';
+
+                event.preventDefault();
+
+                setTimeout(() => { window.location.href = '../html/principal.html'; }, 2000);
             }
-        });
-
-        if (email.value == usuarioValido.email
-            && senha.value == usuarioValido.senha) {
-            msgSucesso.setAttribute('style', 'display: inline-block');
-            msgSucesso.innerHTML = '<strong>Logando...</strong>';
-
-            msgErro.setAttribute('style', 'display: none');
-            msgErro.innerHTML = '';
-
-            const token = Math.random().toString(16).substring(2) + Math.random().toString(16).substring(2);
-            localStorage.setItem('token', token);
-
-            localStorage.setItem('usuarioLogado', JSON.stringify(usuarioValido));
-
-            event.preventDefault();
-
-            setTimeout(() => { window.location.href = '../html/principal.html'; }, 2000);
-        } else {
-            informaErro('E-mail ou Senha Incorreto');
-            event.preventDefault();
         }
     }
+    xmlhttp.send(formData);
+    event.preventDefault();
 });
 
 mostraSenha.addEventListener('click', () => {
@@ -104,3 +89,4 @@ escondeSenha.addEventListener('click', () => {
     escondeSenha.setAttribute('style', 'display: none');
     mostraSenha.setAttribute('style', 'display: inline-block');
 });
+
