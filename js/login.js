@@ -50,7 +50,7 @@ botaoEntrar.addEventListener('click', (event) => {
     formData.append('senha', senha.value);
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "../php/valida.php", true);
+    xhr.open("POST", "../php/autentica.php", true);
     // xhr.responseType = "json";
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
