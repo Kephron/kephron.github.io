@@ -1,7 +1,7 @@
 <?php
 $hostName = 'localhost';
 $userName = 'app_pacatos';
-$userPassword = 'pth1506';
+$userPassword = 'p@th1506';
 $databaseName = 'pacatosteahouse';
 $mysql = new mysqli($hostName, $userName, $userPassword, $databaseName);
 
