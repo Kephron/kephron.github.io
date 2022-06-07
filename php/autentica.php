@@ -1,16 +1,24 @@
 <?php
 require './config.php';
+require './geraToken.php';
 
 header("Content-Type: application/json");
-//O campo usuário e senha preenchido entra no if para validar
+
+class Login
+{
+    public $logado;
+    public $id;
+    public $nome;
+    public $token;
+    public $dataExpiracao;
+}
 
 if (isset($_POST['email']) && isset($_POST['senha'])) {
     $usuario = mysqli_real_escape_string($mysql, $_POST['email']);
     $senha = mysqli_real_escape_string($mysql, $_POST['senha']);
     password_hash($senha, PASSWORD_DEFAULT);
 
-    // Buscar na tabela usuario o usuário que corresponde com os dados digitado no formulário
-    $resultadoUsuario = mysqli_query($mysql, "SELECT TRUE logado, id, nome FROM usuario WHERE email = '$usuario' && senha = '$senha' LIMIT 1");
+    $resultadoUsuario = mysqli_query($mysql, "SELECT id, nome FROM usuario WHERE email = '$usuario' && senha = '$senha' LIMIT 1");
 
     if ($resultadoUsuario === FALSE) {
         http_response_code(500);
@@ -22,31 +30,25 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
     $resultado = mysqli_fetch_assoc($resultadoUsuario);
 
     if (isset($resultado)) {
-        echo json_encode($resultado);
+        $objToken = geraToken($resultado["id"]);
 
-        //Não foi encontrado um usuario na tabela usuário com os mesmos dados digitado no formulário
-        //redireciona o usuario para a página de login
+        $usuarioLogado = new Login();
+        $usuarioLogado->logado = 1;
+        $usuarioLogado->id = $resultado["id"];
+        $usuarioLogado->nome = $resultado["nome"];
+        $usuarioLogado->token = $objToken->token;
+        $usuarioLogado->dataExpiracao = $objToken->dataExpiracao;
+
+        echo json_encode($usuarioLogado);
     } else {
-        http_response_code(404);
-        $retorno = array('logado' => 0, 'mensagem' => 'Usuário não encontrado');
+        http_response_code(401);
+        $retorno = array('logado' => 0, 'mensagem' => 'E-mail ou senha incorreto');
         echo json_encode($retorno);
-        // echo 'Email: ' . $usuario . '  ';
-        // echo 'Senha: ' . $senha;
     }
 } else {
     http_response_code(401);
     $retorno = array('logado' => 0, 'mensagem' => 'E-mail ou senha incorreto');
     echo json_encode($retorno);
-    if (!isset($_POST['email'])) {
-        echo 'Email: Nulo' . '  ';
-    } else {
-        echo $_POST['email'] . '  ';
-    }
-    if (!isset($_POST['senha'])) {
-        echo 'Senha: Nulo';
-    } else {
-        echo 'Senha: ' . $_POST['senha'];
-    }
 }
 
 $mysql->close();

@@ -1,17 +1,43 @@
 <?php
-ini_set('date.timezone', 'America/Sao_paulo');
+class Token
+{
+    public $token;
+    public $dataExpiracao;
+}
 
-$token = md5(uniqid(rand(), true));
-echo "Token: " . $token;
+function geraToken(int $id): Token
+{
+    ini_set('date.timezone', 'America/Sao_paulo');
 
-$timestampCriacao = time();
-echo "\n\nData de criação: " . $timestampCriacao;
-$dataCriacao = date('d/m/Y H:i:s', $timestampCriacao);
-echo "\nData de criação: " . $dataCriacao;
+    global $mysql;
 
-$tempoValidade = 3600;
+    $verificaToken = mysqli_query($mysql, "SELECT * FROM access_token WHERE id_usuario = '$id'  AND data_expiracao >= current_timestamp() LIMIT 1");
 
-$timestampExpiracao = $timestampCriacao + $tempoValidade;
-echo "\n\nData de expiração: " . $timestampExpiracao;
-$dataExpiracao = date('d/m/Y H:i:s', $timestampExpiracao);
-echo "\nData de expiração: " . $dataExpiracao;
+    if ($verificaToken === FALSE) {
+        http_response_code(500);
+        $retorno = array('logado' => 0, 'mensagem' => 'Falha interna, contacte o administrador. Erro: ' . mysqli_error($mysql));
+        echo json_encode($retorno);
+        exit();
+    }
+
+    $resultado = mysqli_fetch_assoc($verificaToken);
+
+    $objToken = new Token();
+
+    if (isset($resultado)) {
+        $objToken->token = $resultado["token"];
+        $objToken->dataExpiracao = $resultado["data_expiracao"];
+
+        return $objToken;
+    } else {
+        $timestampExpiracao = time() + 3600;
+
+        $objToken->token = md5(uniqid(rand(), true));
+        $objToken->dataExpiracao =
+            date('d/m/Y H:i:s', $timestampExpiracao);
+
+        mysqli_query($mysql, "INSERT INTO access_token (token, id_usuario, data_expiracao) VALUES ('$objToken->token', '$id', from_unixtime('$timestampExpiracao'))");
+
+        return $objToken;
+    }
+}
