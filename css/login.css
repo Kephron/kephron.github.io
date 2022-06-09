@@ -10,7 +10,7 @@
 
 #msg-sucesso {
     width: 49%;
-    color: #00bb00;
+    color: #006600;
     background-color: #bbffbe;
     padding: .4rem 0;
     margin: .4rem 0;
@@ -44,7 +44,7 @@
 
 .input-senha {
   position: relative;
-  width: 27.7rem;
+  width: 47.2%;
   left: 14.2rem;
 }
 
@@ -77,13 +77,13 @@
     width: 40%;
 }
 
-.link-cadastro a {
+.link-cadastro-usuario a {
     text-decoration: none;
     font-weight: bold;
     color: #008300;
     transition: all .3s ease-out;
 }
 
-.link-cadastro a:hover {
+.link-cadastro-usuario a:hover {
     color: #6ECD24;
 }

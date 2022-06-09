@@ -15,61 +15,84 @@ const botaoEntrar = document.querySelector('#botao-entrar');
 let listaInput = document.querySelectorAll('input');
 let listaLabel = document.querySelectorAll('label');
 
-function informaErro(msg) {
-    msgErro.setAttribute('style', 'transition: all .3s ease-out; display: inline-block; color: #ff0000; background-color: #ffaaaa;');
-    msgErro.innerHTML = `<strong>${msg}</strong>`;
-
-    msgSucesso.setAttribute('style', 'display: none');
-    msgSucesso.innerHTML = '';
-
-    email.setAttribute('style', 'transition: all 0.4s ease-out; box-shadow: 1px 1px 1.5px 1px #cc0000');
-    labelEmail.setAttribute('style', 'transition: all 0.4s ease-out; color: #cc0000');
-
-    senha.setAttribute('style', 'transition: all 0.4s ease-out; box-shadow: 1px 1px 1.5px 1px #cc0000');
-    labelSenha.setAttribute('style', 'transition: all 0.4s ease-out; color: #cc0000');
+function pintaInput(input, color) {
+    input.setAttribute('style', `transition: all 0.3s ease-out; box-shadow: 1px 1px 1.5px 1px ${color}`);
 }
 
-//foco e desfoco dos inputs
+function pintaLabel(label, color) {
+    label.setAttribute('style', `transition: all 0.3s ease-out; color: ${color}`);
+}
+
 for (let i = 0; i < listaInput.length; i++) {
     let itemInput = document.getElementById(listaInput[i].getAttribute('id'));
     let itemLabel = document.getElementById(listaLabel[i].getAttribute('id'));
 
     itemInput.addEventListener('focus', () => {
-        itemInput.setAttribute('style', 'transition: all 0.3s ease-out; box-shadow: 1px 1px 1.5px 1px #000000');
-        itemLabel.setAttribute('style', 'transition: all 0.3s ease-out; color: #000000');
+        pintaInput(itemInput, '#000000');
+        pintaLabel(itemLabel, '#000000');
     });
 
     itemInput.addEventListener('blur', () => {
-        itemInput.setAttribute('style', 'transition: all 0.3s ease-out; box-shadow: 1px 1px 1.5px 1px #00000060');
+        pintaInput(itemInput, '#00000060');
     });
 }
 
 botaoEntrar.addEventListener('click', (event) => {
+    let verificaLogado = false;
+
     let formData = new FormData();
     formData.append('email', email.value);
     formData.append('senha', senha.value);
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", "../php/autentica.php", true);
-    // xhr.responseType = "json";
     xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            let resultado = JSON.parse(this.response);
-            console.log(resultado);
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                let resultado = JSON.parse(this.response);
 
-            if (resultado == null || resultado.logado == 0) {
-                informaErro('E-mail ou Senha Incorreto');
+                if (resultado.logado == true) {
+                    verificaLogado = true;
+
+                    sessionStorage.setItem('nome', resultado.nome);
+                    sessionStorage.setItem('token', resultado.token);
+                    sessionStorage.setItem('dataExpiracao', resultado.dataExpiracao);
+
+                    msgSucesso.setAttribute('style', 'display: inline-block');
+                    msgSucesso.innerHTML = '<strong>Logando...</strong>';
+
+                    msgErro.setAttribute('style', 'display: none');
+                    msgErro.innerHTML = '';
+
+                    pintaLabel(labelEmail, '#006600');
+                    pintaInput(email, '#006600');
+
+                    pintaLabel(labelSenha, '#006600');
+                    pintaInput(senha, '#006600');
+
+                    event.preventDefault();
+
+                    setTimeout(() => { window.location.href = './principal.html'; }, 1000);
+                }
+            }
+
+            if (verificaLogado == false) {
+                msgErro.setAttribute('style', 'transition: all .3s ease-out; display: inline-block; color: #ff0000; background-color: #ffaaaa;');
+                msgErro.innerHTML = `<strong>E-mail ou Senha Incorreto</strong>`;
+
+                msgSucesso.setAttribute('style', 'display: none');
+                msgSucesso.innerHTML = '';
+
+                email.blur();
+                senha.blur();
+
+                pintaLabel(labelEmail, '#cc0000');
+                pintaInput(email, '#cc0000');
+
+                pintaLabel(labelSenha, '#cc0000');
+                pintaInput(senha, '#cc0000');
+
                 event.preventDefault();
-            } else if (resultado.logado == 1) {
-                msgSucesso.setAttribute('style', 'display: inline-block');
-                msgSucesso.innerHTML = '<strong>Logando...</strong>';
-
-                msgErro.setAttribute('style', 'display: none');
-                msgErro.innerHTML = '';
-
-                event.preventDefault();
-
-                setTimeout(() => { window.location.href = './principal.html'; }, 2000);
             }
         }
     }
@@ -88,4 +111,3 @@ escondeSenha.addEventListener('click', () => {
     escondeSenha.setAttribute('style', 'display: none');
     mostraSenha.setAttribute('style', 'display: inline-block');
 });
-
