@@ -18,18 +18,18 @@
     display: none;
 }
 
-.formulario-cadastro label, .formulario-cadastro input {
+.formulario-cadastro-usuario label, .formulario-cadastro-usuario input {
     display: block;
     text-align: left;
     width: 50%;
 }
 
-.formulario-cadastro label{
+.formulario-cadastro-usuario label{
     margin: 0 0 0.5rem 14.5rem;
     font-size: 1.25rem;
 }
 
-.formulario-cadastro button {
+.formulario-cadastro-usuario button {
     width: 30%;
 }
 
@@ -43,7 +43,7 @@
 
 .input-senha {
   position: relative;
-  width: 27.7rem;
+  width: 47.2%;
   left: 14.2rem;
 }
 

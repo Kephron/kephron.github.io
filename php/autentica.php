@@ -1,17 +1,9 @@
 <?php
 require './config.php';
-require './geraToken.php';
+require '../src/Token.php';
+require '../src/Login.php';
 
 header("Content-Type: application/json");
-
-class Login
-{
-    public $logado;
-    public $id;
-    public $nome;
-    public $token;
-    public $dataExpiracao;
-}
 
 if (isset($_POST['email']) && isset($_POST['senha'])) {
     $usuario = mysqli_real_escape_string($mysql, $_POST['email']);
@@ -20,20 +12,13 @@ if (isset($_POST['email']) && isset($_POST['senha'])) {
 
     $resultadoUsuario = mysqli_query($mysql, "SELECT id, nome FROM usuario WHERE email = '$usuario' && senha = '$senha' LIMIT 1");
 
-    if ($resultadoUsuario === FALSE) {
-        http_response_code(500);
-        $retorno = array('logado' => 0, 'mensagem' => 'Falha interna, contacte o administrador. Erro: ' . mysqli_error($mysql));
-        echo json_encode($retorno);
-        exit();
-    }
-
     $resultado = mysqli_fetch_assoc($resultadoUsuario);
 
     if (isset($resultado)) {
-        $objToken = geraToken($resultado["id"]);
+        $objToken = new Token($resultado["id"]);
 
         $usuarioLogado = new Login();
-        $usuarioLogado->logado = 1;
+        $usuarioLogado->logado = true;
         $usuarioLogado->id = $resultado["id"];
         $usuarioLogado->nome = $resultado["nome"];
         $usuarioLogado->token = $objToken->token;

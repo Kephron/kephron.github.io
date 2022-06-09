@@ -125,7 +125,7 @@ botaoCadastrar.addEventListener('click', (event) => {
 
         event.preventDefault();
 
-        setTimeout(() => { window.location.href = '../html/login.html' }, 3000);
+        setTimeout(() => { window.location.href = './login.html' }, 3000);
     } else {
         msgErro.setAttribute('style', 'transition: all .3s ease-out; display: inline-block; color: #ff0000; background-color: #ffaaaa;');
         msgErro.innerHTML = '<strong>Preencha todos os campos corretamente</strong>';
