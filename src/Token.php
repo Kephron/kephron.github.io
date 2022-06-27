@@ -5,13 +5,13 @@ class Token
     public $token;
     public $dataExpiracao;
 
-    function __construct(int $id)
+    function __construct(int $idUsuario)
     {
         ini_set('date.timezone', 'America/Sao_paulo');
 
         global $mysql;
 
-        $procuraToken = mysqli_query($mysql, "SELECT * FROM access_token WHERE id_usuario = '$id'  AND data_expiracao >= current_timestamp() LIMIT 1");
+        $procuraToken = mysqli_query($mysql, "SELECT * FROM token_acesso WHERE id_usuario = '$idUsuario'  AND data_expiracao >= current_timestamp() LIMIT 1");
 
         $resultado = mysqli_fetch_assoc($procuraToken);
 
@@ -20,11 +20,11 @@ class Token
             $dataExpiracao = new DateTime($resultado["data_expiracao"]);
             $this->dataExpiracao = $dataExpiracao->format('Y/m/d H:i:s');
         } else {
-            $this->geraNovoToken($id);
+            $this->geraNovoToken($idUsuario);
         }
     }
 
-    private function geraNovoToken(int $id): void
+    private function geraNovoToken(int $idUsuario): void
     {
         ini_set('date.timezone', 'America/Sao_paulo');
 
@@ -36,6 +36,6 @@ class Token
         $this->token = md5(uniqid(rand(), true));
         $this->dataExpiracao = $dataExpiracao->format('Y/m/d H:i:s');
 
-        mysqli_query($mysql, "INSERT INTO access_token (token, data_expiracao, id_usuario) VALUES ('$this->token', '$this->dataExpiracao', '$id')");
+        mysqli_query($mysql, "INSERT INTO token_acesso (token, data_expiracao, id_usuario) VALUES ('$this->token', '$this->dataExpiracao', '$idUsuario')");
     }
 }
