@@ -1,20 +1,21 @@
-// const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+const token = sessionStorage.getItem('token');
+
+const nomeUsuario = sessionStorage.getItem('nome');
 
 const logado = document.querySelector('#logado');
 
 const botaoSair = document.querySelector('#botao-sair');
 
-// if (usuarioLogado == null
-//     || localStorage.getItem('token') == null
-//     || localStorage.getItem('token') == undefined) {
-//     alert('Você precisa estar logado para acessar esta página.');
-//     window.location.href = '../html/login.php';
-// } else {
-// logado.innerHTML = `Seja bem vindo, ${usuarioLogado.nome}!`;
-// }
+if (token == null || token == undefined) {
+    alert('Você precisa estar logado para acessar esta página.');
+    window.location.href = './login.html';
+} else {
+    logado.innerHTML = `Seja bem vindo, ${nomeUsuario}!`;
+}
 
 botaoSair.addEventListener('click', () => {
-    // localStorage.removeItem('token');
-    // localStorage.removeItem('usuarioLogado');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('nome');
+    sessionStorage.removeItem('dataExpiracao');
     window.location.href = './login.html';
 });

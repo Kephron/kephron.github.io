@@ -18,18 +18,43 @@
     display: none;
 }
 
-.formulario-cadastro label, .formulario-cadastro input {
+.formulario-cadastro-usuario label:not(.opcoes-genero div label),
+.formulario-cadastro-usuario input:not([type='radio']) {
     display: block;
     text-align: left;
     width: 50%;
 }
 
-.formulario-cadastro label{
-    margin: 0 0 0.5rem 14.5rem;
+.formulario-cadastro-usuario label:not(.opcoes-genero div label) {
+    margin: 0 0 1% 25%;
     font-size: 1.25rem;
 }
 
-.formulario-cadastro button {
+/* Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input[type='date']{
+    color: #999999;
+}
+
+input[type='date']:focus{
+    color: #000000;
+}
+
+input[type='date']:valid{
+    color: #000000;
+}
+
+.formulario-cadastro-usuario button {
     width: 30%;
 }
 
@@ -41,20 +66,21 @@
     cursor: pointer;
 }
 
-.input-senha {
+.formulario-cadastro-usuario .input-senha {
   position: relative;
-  width: 27.7rem;
-  left: 14.2rem;
+  width: 47.2%;
+  left: 24.3%;
+  margin: 0 auto 2.5% 0;
 }
 
-.input-senha input {
+.formulario-cadastro-usuario .input-senha input {
   width: 100%;
   padding-right: 30px;
 }
 
 .tooltip-padrao {
     position: relative;
-     display: inline;
+    display: inline;
     cursor: pointer;
     margin-left: .5rem;
 }
@@ -95,6 +121,22 @@
 
 .tooltip-linha-unica:hover span{
     top: .2rem;
+}
+
+.opcoes-genero {
+    margin: 0 auto 2.5% auto;
+    width: 51%;
+}
+
+.opcoes-genero legend {
+    font-size: 1.25rem;
+    margin: 0 auto 2.5% 1%;
+}
+
+.opcoes-genero div {
+    display: inline-block;
+    margin: 1% .5% 1% .5%;
+    font-size: 1.25rem;
 }
 
 .mostra-senha-padrao, .esconde-senha-padrao {

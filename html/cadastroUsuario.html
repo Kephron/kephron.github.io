@@ -8,7 +8,7 @@
         <title>Cadastro - Pacato's Tea House</title>
         <link rel="stylesheet" href="../css/reset.css">
         <link rel="stylesheet" href="../css/styleDefault.css">
-        <link rel="stylesheet" href="../css/cadastro.css">
+        <link rel="stylesheet" href="../css/cadastroUsuario.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
 
@@ -53,19 +53,41 @@
                 <div id="msg-sucesso" class="nao-selecionavel" unselectable="on"></div>
 
                 <div class="formulario">
-                    <form class="formulario-cadastro">
+                    <form class="formulario-cadastro-usuario" name="formulario-cadastro-usuario" method="POST" action="">
                         <label for="nome" id="label-nome" data-label="label-nome">Nome<div class="tooltip-padrao tooltip-linha-unica" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i><span>Deve ter, no mínimo, três letras</span></div></label>
-                        <input id="nome" class="input-padrao" type="text" data-input="nome" required>
+                        <input name="nome" id="nome" class="input-padrao" type="text" data-input="nome" maxlength="100" required>
 
                         <label for="sobrenome" id="label-sobrenome" data-label="label-sobrenome">Sobrenome<div class="tooltip-padrao tooltip-linha-unica" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i><span>Deve ter, no mínimo, três letras</span></div></label>
-                        <input id="sobrenome" class="input-padrao" type="text" data-input="sobrenome" required>
+                        <input name="sobrenome" id="sobrenome" class="input-padrao" type="text" data-input="sobrenome" maxlength="100" required>
+
+                        <label for="cpf" id="label-cpf" data-label="label-cpf">CPF<div class="tooltip-padrao tooltip-linha-unica" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i><span>Somente números</span></div></label>
+                        <input name="cpf" id="cpf" class="input-padrao" type="number" data-input="cpf" placeholder="XXX.XXX.XXX-XX" onkeypress="return somenteNumero(event)" required>
+
+                        <label for="data-nascimento" id="label-data-nascimento" data-label="label-data-nascimento">Data de Nascimento<div class="tooltip-padrao tooltip-linha-unica" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i><span>Somente números</span></div></label>
+                        <input name="data-nascimento" id="data-nascimento" class="input-padrao" type="date" data-input="data-nascimento" onkeypress="return somenteNumero(event)" required>
+
+                        <fieldset class="opcoes-genero">
+                            <legend id="label-genero">Gênero</legend>
+                            <div>
+                                <label for="radio-masculino"><input name="genero" type="radio" value="Masculino" id="radio-masculino">Masculino</label>
+                            </div>
+                            <div>
+                                <label for="radio-feminino"><input name="genero" type="radio" value="Feminino" id="radio-feminino">Feminino</label>
+                            </div>
+                            <div>
+                                <label for="radio-prefere-nao-informar"><input name="genero" type="radio" value="Não informado" id="radio-prefere-nao-informar" checked>Prefiro não informar</label>
+                            </div>
+                        </fieldset>
+
+                        <label for="telefone" id="label-telefone" data-label="label-telefone">Telefone<div class="tooltip-padrao tooltip-linha-unica" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i><span>Somente números</span></div></label>
+                        <input name="telefone" id="telefone" class="input-padrao" type="tel" data-input="telefone" placeholder="(XX) XXXXX-XXXX" onkeypress="return somenteNumero(event)" required>
 
                         <label for="email" id="label-email" data-label="label-email">E-mail</label>
-                        <input id="email" class="input-padrao" type="text" data-input="email" required placeholder="seuemail@dominio.com">
+                        <input name="email" id="email" class="input-padrao" type="text" data-input="email" placeholder="seuemail@dominio.com" required>
 
                         <label for="senha" id="label-senha" data-label="label-senha">Senha<div class="tooltip-padrao" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i><span>Deve ter de 8 a 20 dígitos, letra maiúscula, letra minúscula, número e caracter especial</span></div></label>
                         <div class="input-senha">
-                            <input id="senha" class="input-padrao" type="password" data-input="senha" required placeholder="********">
+                            <input name="senha" id="senha" class="input-padrao" type="password" data-input="senha" maxlength="20" placeholder="********" required>
                             <div class="mostra-senha-padrao mostra-senha">
                                 <i class="fa fa-eye-slash" aria-hidden="true"></i>
                             </div>
@@ -76,7 +98,7 @@
 
                         <label for="confirma-senha" id="label-confirma-senha" data-label="label-confirma-senha">Repita a Senha</label>
                         <div class="input-senha">
-                            <input id="confirma-senha" class="input-padrao" type="password" data-input="confirma-senha" required placeholder="********">
+                            <input name="confirma-senha" id="confirma-senha" class="input-padrao" type="password" data-input="confirma-senha" maxlength="20" placeholder="********" required>
                             <div class="mostra-senha-padrao mostra-confirma-senha">
                                 <i class="fa fa-eye-slash" aria-hidden="true"></i>
                             </div>
@@ -85,7 +107,7 @@
                             </div>
                         </div>
 
-                        <button class="botao-padrao" id="botao-cadastrar">Cadastrar</button>
+                        <button type="submit" class="botao-padrao" id="botao-cadastrar">Cadastrar</button>
                     </form>
 
                     <div class="divisor">
@@ -102,7 +124,7 @@
                 <p class="copyright">&copy; Todos os Direitos Reservados. Pacato's Tea House. 2022.</p>
             </div>
         </footer>
-        <script src="../js/cadastro.js"></script>
+        <script src="../js/cadastroUsuario.js"></script>
     </body>
 
 </html>
