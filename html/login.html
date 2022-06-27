@@ -53,13 +53,13 @@
                 <div id="msg-sucesso" class="nao-selecionavel"></div>
 
                 <div class="formulario">
-                    <form class="formulario-login" method="POST" action="">
+                    <form class="formulario-login" name="formulario-login" method="POST" action="">
                         <label for="email" id="label-email">E-mail</label>
-                        <input name="email" id="email" class="input-padrao" type="text" required placeholder="seuemail@dominio.com">
+                        <input name="email" id="email" class="input-padrao" type="email" maxlength="100" required placeholder="seuemail@dominio.com">
 
                         <label for="senha" id="label-senha">Senha</label>
                         <div class="input-senha">
-                            <input name="senha" id="senha" class="input-padrao" type="password" required placeholder="********">
+                            <input name="senha" id="senha" class="input-padrao" type="password" maxlength="20" required placeholder="********">
                             <div class="mostra-senha">
                                 <i class="fa fa-eye-slash" aria-hidden="true"></i>
                             </div>
