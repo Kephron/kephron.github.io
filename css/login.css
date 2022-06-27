@@ -26,7 +26,7 @@
 
 .formulario-login label {
     font-size: 1.25rem;
-    margin: 0 0 0.5rem 14.5rem;
+    margin: 0 0 1% 25%;
 }
 
 .formulario-login button {
@@ -45,7 +45,7 @@
 .input-senha {
   position: relative;
   width: 47.2%;
-  left: 14.2rem;
+  left: 24.3%;
 }
 
 .input-senha input {
