@@ -1,0 +1,264 @@
+<canvas width="600" height="450"></canvas>
+<button>Jogar</button>
+
+<script>
+	function pintaTelaDePreto() {
+		pincel.fillStyle = "black";
+		pincel.fillRect(larguraInicialTela, alturaInicialTela, larguraFinalTela, alturaFinalTela);
+	}
+
+	function limpaTela() {
+		pincel.clearRect(larguraInicialTela, alturaInicialTela - 50, larguraFinalTela, alturaFinalTela);
+	}
+
+	function atualizaTela() {
+		limpaTela();
+		pintaTelaDePreto();
+		desenhaBola();
+		desenhaRaquete(xRaquete1, yRaquete1);
+		desenhaRaquete(xRaquete2, yRaquete2);
+		desenhaPlacar();
+		trilha.play();
+	}
+
+	function desenhaBola() {
+		pincel.fillStyle = "white";
+		pincel.beginPath();
+		pincel.arc(xBola, yBola, raio, 0, 2 * Math.PI);
+		pincel.fill();
+	}
+
+	function movimentaBola() {
+		verificaColisaoBolaEBorda();
+		verificaColisaoBolaERaquete();
+
+		if (colisaoBordasLaterais
+			&& xBola + raio > larguraFinalTela) {
+			vXBola *= -1;
+		} else if (colisaoBordasLaterais
+			&& xBola - raio < larguraInicialTela) {
+			vXBola *= -1;
+		} else if (colisaoBordaSuperior
+			&& yBola - raio < alturaInicialTela) {
+			vYBola *= -1;
+		} else if (colisaoBordaInferior
+			&& yBola + raio > alturaFinalTela) {
+			vYBola *= -1;
+		}
+
+		xBola += vXBola;
+		yBola += vYBola;
+
+		marcaPonto();
+
+		console.log(yBola, xBola);
+	}
+
+	function verificaColisaoBolaEBorda() {
+		if (xBola + raio >= larguraFinalTela
+			|| xBola - raio <= larguraInicialTela) {
+			colisaoBordasLaterais = true;
+		} else if (yBola - raio <= alturaInicialTela) {
+			colisaoBordaSuperior = true;
+		} else if (yBola + raio >= alturaFinalTela) {
+			colisaoBordaInferior = true;
+		} else {
+			colisaoBordasLaterais = false;
+			colisaoBordaSuperior = false;
+			colisaoBordaInferior = false;
+		}
+	}
+
+	function desenhaRaquete(x, y) {
+		pincel.fillStyle = "white";
+		pincel.fillRect(x, y, larguraRaquetes, alturaRaquetes);
+	}
+
+	function leDoTeclado(evento) {
+		verificaColisaoRaqueteEBorda();
+		if (colisaoBordaSuperior
+			&& evento.keyCode == setaCima) {
+			yRaquete1 += 0;
+		}
+
+		if (colisaoBordaSuperior == false
+			&& evento.keyCode == setaCima) {
+			yRaquete1 -= taxaMovimentoMinhaRaquete;
+		}
+
+		if (colisaoBordaInferior
+			&& evento.keyCode == setaBaixo) {
+			yRaquete1 += 0;
+		}
+
+		if (colisaoBordaInferior == false
+			&& evento.keyCode == setaBaixo) {
+			yRaquete1 += taxaMovimentoMinhaRaquete;
+		}
+	}
+
+	function movimentaRaquete2() {
+		verificaColisaoRaqueteEBorda();
+
+		vYRaquete2 = yBola - yRaquete2 - (alturaRaquetes / 2) - atrasoRaquete2;
+
+		yRaquete2 += vYRaquete2;
+
+		if (colisaoBordaSuperior
+			&& yRaquete2 <= alturaInicialTela) {
+			yRaquete2 += atrasoRaquete2 * 0.05;
+		} else if (colisaoBordaInferior
+			&& yRaquete2 + alturaRaquetes >= alturaFinalTela) {
+			yRaquete2 -= atrasoRaquete2 * 0.05;
+		} else {
+			yRaquete2 = yBola - atrasoRaquete2;
+		}
+		console.log(yRaquete2);
+	}
+
+	function verificaColisaoRaqueteEBorda() {
+		if (yRaquete1 <= alturaInicialTela
+			|| yRaquete2 <= alturaInicialTela) {
+			colisaoBordaSuperior = true;
+		} else if ((yRaquete1 + alturaRaquetes) >= alturaFinalTela
+			|| (yRaquete2 + alturaRaquetes) >= alturaFinalTela) {
+			colisaoBordaInferior = true;
+		} else {
+			colisaoBordaSuperior = false;
+			colisaoBordaInferior = false;
+		}
+	}
+
+	function verificaColisaoBolaERaquete() {
+		if (xBola - raio < xRaquete1 + larguraRaquetes
+			&& yBola + raio > yRaquete1
+			&& yBola - raio < yRaquete1 + alturaRaquetes) {
+			vXBola *= -1;
+			raquetada.play();
+		} else if (xBola + raio > xRaquete2
+			&& yBola + raio > yRaquete2
+			&& yBola - raio < yRaquete2 + alturaRaquetes) {
+			vXBola *= -1;
+			raquetada.play();
+		}
+	}
+
+	function desenhaRetangulo(x, y, tamanho) {
+		pincel.fillStyle = "orange";
+		pincel.fillRect(x, y, tamanho, tamanho);
+
+		pincel.fillStyle = "black";
+		pincel.strokeRect(x, y, tamanho, tamanho);
+	}
+
+	function desenhaPlacar() {
+		desenhaRetangulo(xPlacar, yPlacar, tamanhoPlacar);
+		desenhaRetangulo(xPlacar + 80, yPlacar, tamanhoPlacar);
+		escreveNaTela(adicionaZero(pontosRaquete1, 2), 238.5, 40, 40);
+		escreveNaTela("Jogador 1", 80, 40, 30);
+		escreveNaTela(adicionaZero(pontosRaquete2, 2), 318.5, 40, 40);
+		escreveNaTela("Jogador 2", 380, 40, 30);
+	}
+
+	function marcaPonto() {
+		if (xBola - raio < larguraInicialTela) {
+			pontosRaquete2++;
+			ponto.play();
+		} else if (xBola + raio > larguraFinalTela) {
+			pontosRaquete1++;
+			ponto.play();
+		}
+	}
+
+	function escreveNaTela(texto, x, y, tamanho) {
+		pincel.font = tamanho + "px Arial";
+		pincel.fillStyle = "black"
+		pincel.fillText(texto, x, y);
+	}
+
+	function adicionaZero(numero, quantidadeAlgarismos) {
+		let numeroComZeros = String(numero);
+		let contador = numeroComZeros.length;
+
+		while (contador < quantidadeAlgarismos) {
+			numeroComZeros = "0" + numeroComZeros;
+			contador++;
+		}
+
+		return numeroComZeros;
+	}
+
+	function clicaEmJogar() {
+		if (botaoJogar) {
+			document.onkeydown = leDoTeclado;
+			setInterval(atualizaTela, (intervaloDeAtualizacao - intervaloDeAtualizacao));
+			setInterval(movimentaBola, intervaloDeAtualizacao);
+			setInterval(movimentaRaquete2, intervaloDeAtualizacao);
+		}
+	}
+
+	//variáveis da tela
+	let tela = document.querySelector("canvas");
+	let larguraInicialTela = 0;
+	let larguraFinalTela = tela.scrollWidth;
+	let alturaInicialTela = 50;
+	let alturaFinalTela = tela.scrollHeight;
+
+	//variável do pincel
+	let pincel = tela.getContext("2d");
+
+	//variável do intervalo de atualização de tela
+	let intervaloDeAtualizacao = 50;
+
+	//variáveis do placar
+	let tamanhoPlacar = 50;
+	let xPlacar = (larguraFinalTela / 2) - 65;
+	let yPlacar = alturaInicialTela - tamanhoPlacar;
+
+	//variáveis da bola
+	let xBola = larguraFinalTela / 2;
+	let yBola = (alturaFinalTela / 2) + (tamanhoPlacar / 2);
+	let raio = 8;
+
+	//variáveis da velocidade da bola
+	let vXBola = 9.75;
+	let vYBola = 8.75;
+
+	//variáveis das raquetes
+	let alturaRaquetes = 60;
+	let larguraRaquetes = 5;
+
+	//variável da raquete 1
+	let xRaquete1 = 5;
+	let yRaquete1 = yBola - (alturaRaquetes / 2);
+	let pontosRaquete1 = 0;
+
+	//variável da raquete 2
+	let xRaquete2 = 590;
+	let yRaquete2 = yBola - (alturaRaquetes / 2);
+	let vYRaquete2;
+	let atrasoRaquete2 = 40;
+	let pontosRaquete2 = 0;
+
+	//variáveis de verificação de colisão
+	let colisaoBordaInferior = false;
+	let colisaoBordaSuperior = false;
+	let colisaoBordasLaterais = false;
+
+	//variáveis das setas
+	let setaCima = 38;
+	let setaBaixo = 40;
+
+	//variável de incremento no movimento da raquete 1
+	let taxaMovimentoMinhaRaquete = 20;
+
+	//variáveis de sons
+	const raquetada = new Audio("raquetada.mp3");
+	const ponto = new Audio("ponto.mp3");
+	const trilha = new Audio("trilha.mp3");
+
+	//variável do botão
+	let botaoJogar = document.querySelector("button");
+
+	botaoJogar.onclick = clicaEmJogar;
+</script>
