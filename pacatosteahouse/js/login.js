@@ -59,7 +59,7 @@ formularioLogin.addEventListener('submit', (event) => {
 
     let formData = new FormData(formularioLogin);
     let objetoFormData = {};
-    formData.forEach((chave, valor) => {
+    formData.forEach((valor, chave) => {
         objetoFormData[chave] = valor;
     });
 

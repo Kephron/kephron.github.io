@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Endereço - Pacato's Tea House</title>
+        <link rel="stylesheet" href="../css/reset.css">
+        <link rel="stylesheet" href="../css/styleDefault.css">
+        <link rel="stylesheet" href="../css/editaEndereco.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+
+    <body>
+        <header>
+            <section class="cabecalho-conteudo">
+                <div class="cabecalho-conteudo-esquerdo">
+                    <a href="../html/index.html">
+                        <img src="https://i.imgur.com/fIOgF6b.png">
+                    </a>
+                    <a href="../html/index.html">
+                        <h1>
+                            <p id="cabecalho-nome">Pacato's Tea House</p>
+                            <p>Chá para qualquer hora</p>
+                        </h1>
+                    </a>
+                </div>
+                <div class="cabecalho-conteudo-direito">
+                    <div class="cabecalho-login-cesta">
+                        <a href="../html/login.html">
+                            <button class="cabecalho-login">Entre ou Cadastre-se<i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i></i></button>
+                        </a>
+                        <i class="fa fa-shopping-basket fa-2x" aria-hidden="true"></i>
+                    </div>
+
+                    <nav class="cabecalho-navegacao">
+                        <ul>
+                            <li><a href="../html/index.html">Início</a></li>
+                            <li><a href="../html/produtos.html">Produtos</a></li>
+                            <li><a href="../html/contato.html">Contato</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </section>
+        </header>
+
+        <main>
+            <section class="conteudo-pagina">
+                <h2 class="titulo-pagina">Endereço</h2>
+
+                <div id="msg-erro" class="nao-selecionavel" unselectable="on">&emsp;</div>
+                <div id="msg-sucesso" class="nao-selecionavel" unselectable="on"></div>
+
+                <div class="formulario">
+                    <form class="formulario-edita-endereco" name="formulario-edita-endereco" method="POST" action="">
+                        <label for="cep" id="label-cep" data-label="label-cep">CEP<div class="tooltip-padrao tooltip-linha-unica" href="#"><i class="fa fa-info-circle" aria-hidden="true"></i><span>Somente números</span></div></label>
+                        <input name="cep" id="cep" class="input-padrao" type="number" data-input="cep" placeholder="XXXXX-XXX" onkeypress="return somenteNumero(event)" onblur="pesquisaCep(this.value)" required>
+
+                        <label for="uf" id="label-uf" data-label="label-uf">Estado</label>
+                        <select name="uf" id="uf" class="input-padrao" data-input="uf" required>
+                            <option value="" selected>Selecione</option>
+                            <option value="AC">AC - Acre</option>
+                            <option value="AL">AL - Alagoas</option>
+                            <option value="AM">AM - Amazonas</option>
+                            <option value="BA">BA - Bahia</option>
+                            <option value="CE">CE - Ceará</option>
+                            <option value="DF">DF - Distrito Federal</option>
+                            <option value="ES">ES - Espírito Santo</option>
+                            <option value="GO">GO - Goiás</option>
+                            <option value="MA">MA - Maranhão</option>
+                            <option value="MT">MT - Mato Grosso</option>
+                            <option value="MS">MS - Mato Grosso do Sul</option>
+                            <option value="MG">MG - Minas Gerais</option>
+                            <option value="PA">PA - Pará</option>
+                            <option value="PB">PB - Paraíba</option>
+                            <option value="PR">PR - Paraná</option>
+                            <option value="PE">PE - Pernambuco</option>
+                            <option value="PI">PI - Piauí</option>
+                            <option value="RJ">RJ - Rio de Janeiro</option>
+                            <option value="RN">RN - Rio Grande do Norte</option>
+                            <option value="RS">RS - Rio Grande do Sul</option>
+                            <option value="RO">RO - Rondônia</option>
+                            <option value="RR">RR - Roraima</option>
+                            <option value="SC">SC - Santa Catarina</option>
+                            <option value="SP">SP - São Paulo</option>
+                            <option value="SE">SE - Sergipe</option>
+                            <option value="TO">TO - Tocantins</option>
+                        </select>
+
+                        <label for="cidade" id="label-cidade" data-label="label-cidade">Cidade</label>
+                        <select name="cidade" id="cidade" class="input-padrao" data-input="cidade" required>
+                            <option value="" selected>Selecione</option>
+                        </select>
+
+                        <label for="bairro" id="label-bairro" data-label="label-bairro">Bairro</label>
+                        <input name="bairro" id="bairro" class="input-padrao" type="text" data-input="bairro" maxlength="40" required>
+
+                        <label for="logradouro" id="label-logradouro" data-label="label-logradouro">Logradouro</label>
+                        <input name="logradouro" id="logradouro" class="input-padrao" type="text" data-input="logradouro" maxlength="100" required>
+
+                        <label for="numero" id="label-numero" data-label="label-numero">Número</label>
+                        <input name="numero" id="numero" class="input-padrao" type="number" data-input="numero" onkeypress="return somenteNumero(event)" required>
+
+                        <label for="complemento" id="label-complemento" data-label="label-complemento">Complemento</label>
+                        <input name="complemento" id="complemento" class="input-padrao" type="text" data-input="complemento" maxlength="40">
+
+                        <button type="submit" class="botao-padrao" id="botao-salvar">Salvar</button>
+                    </form>
+            </section>
+        </main>
+
+        <footer>
+            <div class="rodape-conteudo">
+                <img src="https://i.imgur.com/fIOgF6b.png">
+                <p class="copyright">&copy; Todos os Direitos Reservados. Pacato's Tea House. 2022.</p>
+            </div>
+        </footer>
+        <script type="module" src="../js/listaCidadesPorEstado.js"></script>
+        <script src="../js/editaEndereco.js"></script>
+    </body>
+
+</html>

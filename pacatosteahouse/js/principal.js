@@ -4,6 +4,8 @@ const nomeUsuario = sessionStorage.getItem('nome');
 
 const logado = document.querySelector('#logado');
 
+const botaoEditaEndereco = document.querySelector('#botao-edita-endereco');
+
 const botaoSair = document.querySelector('#botao-sair');
 
 if (token == null || token == undefined) {
@@ -12,6 +14,10 @@ if (token == null || token == undefined) {
 } else {
     logado.innerHTML = `Seja bem vindo, ${nomeUsuario}!`;
 }
+
+botaoEditaEndereco.addEventListener('click', () => {
+    window.location.href = './editaEndereco.html';
+});
 
 botaoSair.addEventListener('click', () => {
     sessionStorage.removeItem('token');

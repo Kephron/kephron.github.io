@@ -1,0 +1,105 @@
+#msg-erro {
+    width: 49%;
+    background-color: #ffffff;
+    color: #ffffff;
+    padding: .4rem 0;
+    margin: .4rem 0;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+#msg-sucesso {
+    width: 49%;
+    color: #00bb00;
+    background-color: #bbffbe;
+    padding: .4rem 0;
+    margin: .4rem 0;
+    border-radius: 4px;
+    display: none;
+}
+
+.formulario-edita-endereco label,
+.formulario-edita-endereco input {
+    display: block;
+    text-align: left;
+    width: 50%;
+}
+
+.formulario-edita-endereco label {
+    margin: 0 0 1% 25%;
+    font-size: 1.25rem;
+}
+
+.formulario .formulario-edita-endereco select{
+    height: 32px;
+    width: 51.63%;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.fa-info-circle {
+    color: #cdcdcd;
+}
+
+.fa-info-circle:hover {
+    cursor: pointer;
+}
+
+.tooltip-padrao {
+    position: relative;
+    display: inline;
+    cursor: pointer;
+    margin-left: .5rem;
+}
+
+.tooltip-padrao span {
+    position: absolute;
+    width: 20rem;
+    font-size: .8rem;
+    line-height: 1rem;
+    color: #000000;
+    background: #eeeded;
+    height: fit-content;
+    text-align: center;
+    visibility: hidden;
+    border-radius: 8px;
+}
+
+.tooltip-padrao span:after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 15%;
+}
+
+.tooltip-padrao:hover span {
+    visibility: visible;
+    padding: .2rem 1rem;
+    opacity: 0.9;
+    top: -.8rem;
+    left: 145%;
+    z-index: 999;
+    box-shadow: 1px 1px 1.5px 1px #00000050;
+}
+
+.tooltip-linha-unica span {
+    width: max-content;
+}
+
+.tooltip-linha-unica:hover span{
+    top: .2rem;
+}
+
+.formulario-edita-endereco button {
+    width: 30%;
+}

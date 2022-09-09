@@ -2,18 +2,27 @@
 require './config.php';
 require '../src/Token.php';
 require '../src/Login.php';
+require '../src/SenhaSegura.php';
 
 header("Content-Type: application/json");
 
-if (isset($_POST['email']) && isset($_POST['senha'])) {
-    $email = mysqli_real_escape_string($mysql, $_POST['email']);
-    $senha = mysqli_real_escape_string($mysql, $_POST['senha']);
-    $senhaCodificada = password_hash($senha, PASSWORD_DEFAULT);
+$jsonConvertido = json_decode(file_get_contents('php://input'), true);
 
-    $usuario = mysqli_query($mysql, "SELECT id_usuario, ativo FROM usuario WHERE email = '$email' && senha = '$senhaCodificada' LIMIT 1");
+if (isset($jsonConvertido['email']) && isset($jsonConvertido['senha'])) {
+    $email = mysqli_real_escape_string($mysql, $jsonConvertido['email']);
+    $senha = mysqli_real_escape_string($mysql, $jsonConvertido['senha']);
+
+    $usuario = mysqli_query($mysql, "SELECT id_usuario, ativo, senha FROM usuario WHERE email = '$email' LIMIT 1");
     $resultadoUsuario = mysqli_fetch_assoc($usuario);
 
-    if (isset($resultadoUsuario['id_usuario']) && $resultadoUsuario['ativo'] == 1) {
+    $senhaSegura = new SenhaSegura();
+    $senhaVerificada = $senhaSegura->verificaSenha($senha, $resultadoUsuario['senha']);
+
+    if (
+        isset($resultadoUsuario['id_usuario'])
+        && $resultadoUsuario['ativo'] == 1
+        && $senhaVerificada
+    ) {
         $idUsuario = $resultadoUsuario['id_usuario'];
 
         $cliente = mysqli_query($mysql, "SELECT nome FROM cliente WHERE id_usuario = '$idUsuario' LIMIT 1");

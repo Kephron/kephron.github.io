@@ -1,3 +1,18 @@
 .titulo-pagina {
     margin-bottom: 2rem;
 }
+
+#botao-edita-endereco{
+    background-color: #ffffff;
+    color: #000000;
+    font-weight: bold;
+    box-shadow: none;
+    margin-bottom: 2rem; 
+    border: solid;
+    border-color: #ffffff;
+}
+
+#botao-edita-endereco:hover{
+    background-color: #ededed;
+    border-color: #000000;
+}

@@ -1,5 +1,6 @@
 <?php
 require 'config.php';
+require '../src/SenhaSegura.php';
 
 header("Content-Type: application/json");
 
@@ -121,7 +122,6 @@ if (
     $telefone = mysqli_real_escape_string($mysql, $jsonConvertido['telefone']);
     $email = mysqli_real_escape_string($mysql, $jsonConvertido['email']);
     $senha = mysqli_real_escape_string($mysql, $jsonConvertido['senha']);
-    $senhaCodificada = password_hash($senha, PASSWORD_DEFAULT);
 
     if (
         strlen($nome) >= 3
@@ -132,6 +132,9 @@ if (
         && validaEmail($email)
         && validaSenha($senha)
     ) {
+        $senhaSegura = new SenhaSegura();
+        $senhaEncriptada = $senhaSegura->encriptaSenha($senha);
+
         $clienteCpf = mysqli_query($mysql, "SELECT id_usuario FROM cliente WHERE cpf = '$cpf' LIMIT 1");
         $resultadoClienteCpf = mysqli_fetch_assoc($clienteCpf);
 
@@ -152,9 +155,9 @@ if (
                 } else if (isset($resultadoUsuario) && $resultadoUsuario['ativo'] != 1) {
                     informaStatusCode(409, 'E-mail já cadastrado e está bloqueado');
                 } else {
-                    $insereUsuario = mysqli_query($mysql, "INSERT INTO usuario (email, senha, dt_atualizacao) VALUES ('$email', '$senhaCodificada', CURRENT_TIMESTAMP())");
+                    $insereUsuario = mysqli_query($mysql, "INSERT INTO usuario (email, senha, dt_atualizacao) VALUES ('$email', '$senhaEncriptada', CURRENT_TIMESTAMP())");
 
-                    $selecionaNovoIdUsuario = mysqli_query($mysql, "SELECT id_usuario FROM usuario WHERE email = '$email' && senha = '$senhaCodificada'");
+                    $selecionaNovoIdUsuario = mysqli_query($mysql, "SELECT id_usuario FROM usuario WHERE email = '$email' && senha = '$senhaEncriptada'");
                     $resultadoNovoIdUsuario = mysqli_fetch_assoc($selecionaNovoIdUsuario);
                     $novoIdUsuario = $resultadoNovoIdUsuario['id_usuario'];
 
